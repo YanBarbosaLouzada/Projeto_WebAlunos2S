@@ -1,16 +1,29 @@
-import React from 'react'
-import { useState } from 'react';
-import { generateRandomId } from '../helpers/generateRandomId';
+import React, { createContext, useState } from "react";
+import { mockNotes } from "../mockData/mockNotes"; // não criamos ainda
+import { generateAtualDate } from "../helpers/generateAtualDate";
+import { generateRandomId } from "../helpers/generateRandomId";
 
-const NotesContext = React.createContext();
+const NoteContext = createContext(); //Criaando a loja
 
-const NoteProvider = ({ children }) => {
-    const [notes, setNotes] = useState([...mockNotes]);
+const NoteProvider = ({ children }) => { // vamos criar nossas funções que seram usadas por outros componentes
+    const [notes, setNotes] = useState([...mockNotes]); // vamos usar a lista que jaja vamos criar
 
-    const addNote = (title,description) => {
-        setNotes([...notes, {id: generateRandomIdd(),description}]);
-    }
+    const addNote = (description, title) => {
+        setNotes([
+            ...notes,
+            { id: generateRandomId(), description, title, date: generateAtualDate() },
+        ]);
+    };
 
-}
+    const deleteNote = (id) => {
+        setNotes(notes.filter((note) => note.id !== id));
+    };
 
-export default NotesContext
+    return (
+        <NoteContext.Provider value={{ notes, addNote, deleteNote }}>
+            {children} 
+        </NoteContext.Provider>
+    );
+};
+
+export { NoteProvider, NoteContext };
