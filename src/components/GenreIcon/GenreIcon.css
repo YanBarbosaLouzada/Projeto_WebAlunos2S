@@ -1,0 +1,10 @@
+.genre-icon{
+    height: 30px;
+    border-radius: 18px;
+    background-color: rgb(20, 181, 179);
+    color: white;
+    display: flex;
+    padding-inline: 10px;
+    margin: 5px;
+    align-items: center;
+}
