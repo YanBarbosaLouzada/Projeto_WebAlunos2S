@@ -1,21 +1,16 @@
 import React, { useContext } from 'react'
-import { NoteContext } from '../../context/NotesContext'
+import { NoteContext } from '../../context/NoteContext';
+import Note from '../Note/Note';
 
 function AllNotes() {
-    const { notes } = useContext(NoteContext);
+  const { notes } = useContext(NoteContext);
   return (
     <div className='AllNotes'>
-          {notes.map((note) => {
-              <a key={note.id} {...n}></a>
-          })}
+      {notes.map((n) => (
+        <Note key={n.id} {...n}/>
+      ))}
     </div>
   )
 }
 
 export default AllNotes
-
-// arrumar linha 9
-// criar notes
-// importar pagina no router
-// importar no navbar
-

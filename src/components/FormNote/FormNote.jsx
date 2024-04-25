@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import "./FormNote.css";
-import NotesContext from '../../context/NotesContext'
+import { NoteContext } from "../../context/NoteContext";
 
-export function FormNote() { // componente montando o formulario das notas
+function FormNote() { // componente montando o formulario das notas
     const [noteCreated, setNoteCreated] = useState({ title: "", description: "" });
-    const { addNote } = useContext(NotesContext);
+    const { addNote } = useContext(NoteContext);
 
     const SendNote = (e) => {
         e.preventDefault();
@@ -14,10 +14,7 @@ export function FormNote() { // componente montando o formulario das notas
     return (
         <div className="aside-notes">
             <form id="formNote" onSubmit={SendNote}>
-                <label htmlFor="titleNote" className="margin-form">
-                    {" "}
-                    Título
-                </label>
+                <label htmlFor="titleNote" className="margin-form">{" "} Título </label>
                 <input
                     type="text"
                     className="margin-form"
@@ -28,10 +25,7 @@ export function FormNote() { // componente montando o formulario das notas
                     id="titleNote"
                     placeholder="Título"
                 />
-                <label htmlFor="descriptionNote" className="margin-form">
-                    {" "}
-                    Descrição
-                </label>
+                <label htmlFor="descriptionNote" className="margin-form">{" "} Descrição </label>
                 <input
                     type="text"
                     className="margin-form"
@@ -42,10 +36,10 @@ export function FormNote() { // componente montando o formulario das notas
                     id="descriptionNote"
                     placeholder="Descrição"
                 />
-                <button type="submit" id="buttonForm" className="margin-form" >
-                    Salvar Anotação
-                </button>
+                <button type="submit" id="buttonForm" className="margin-form" > Salvar Anotação </button>
             </form>
         </div>
     );
 }
+
+export default FormNote;	

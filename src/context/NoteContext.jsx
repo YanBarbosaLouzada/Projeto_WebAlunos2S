@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { mockNotes } from "../mockData/mockNotes"; // não criamos ainda
+import { mockNotes } from "../Mock/mockNotes";
 import { generateAtualDate } from "../helpers/generateAtualDate";
 import { generateRandomId } from "../helpers/generateRandomId";
 
