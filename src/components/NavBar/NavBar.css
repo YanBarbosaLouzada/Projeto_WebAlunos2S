@@ -8,7 +8,12 @@
     color: white;
     padding: 10px;
     border: 5px solid chocolate;
+    justify-content: space-between;
+    padding-right: 20px;
 
+}
+#navbar div{
+    display: flex;
 }
 
 nav div a {

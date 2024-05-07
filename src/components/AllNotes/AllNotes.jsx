@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { NoteContext } from '../../context/NoteContext';
 import Note from '../Note/Note';
+import './AllNotes.css'
 
 function AllNotes() {
   const { notes } = useContext(NoteContext);

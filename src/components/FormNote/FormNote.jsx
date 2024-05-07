@@ -1,14 +1,31 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./FormNote.css";
 import { NoteContext } from "../../context/NoteContext";
 
 function FormNote() { // componente montando o formulario das notas
-    const [noteCreated, setNoteCreated] = useState({ title: "", description: "" });
-    const { addNote } = useContext(NoteContext);
+    //usando funções que foram criadas
+
+    const {
+        addNote,
+        note,
+        setNote,
+        IsEditing,
+        setEditing,
+        idEdit,
+        setIdEdit,
+        editNote
+    } = useContext(NoteContext);
 
     const SendNote = (e) => {
         e.preventDefault();
-        addNote(noteCreated.title, noteCreated.description)
+        if (IsEditing) {
+            editNote(idEdit);
+        } else {
+            addNote(note.title, note.description)
+        }
+        setEditing(false);
+        setIdEdit("");
+        setNote({ title: "", description: "" });
     }
 
     return (
@@ -18,9 +35,9 @@ function FormNote() { // componente montando o formulario das notas
                 <input
                     type="text"
                     className="margin-form"
-                    value={noteCreated.title}
+                    value={note.title}
                     onChange={(e) =>
-                        setNoteCreated({ ...noteCreated, title: e.target.value })
+                        setNote({ ...note, title: e.target.value })
                     }
                     id="titleNote"
                     placeholder="Título"
@@ -29,9 +46,9 @@ function FormNote() { // componente montando o formulario das notas
                 <input
                     type="text"
                     className="margin-form"
-                    value={noteCreated.description}
+                    value={note.description}
                     onChange={(e) =>
-                        setNoteCreated({ ...noteCreated, description: e.target.value })
+                        setNote({ ...note, description: e.target.value })
                     }
                     id="descriptionNote"
                     placeholder="Descrição"

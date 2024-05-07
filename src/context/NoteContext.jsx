@@ -8,6 +8,10 @@ const NoteContext = createContext(); //Criaando a loja
 const NoteProvider = ({ children }) => { // vamos criar nossas funções que seram usadas por outros componentes
     const [notes, setNotes] = useState([...mockNotes]); // vamos usar a lista que jaja vamos criar
 
+    const [note, setNote] = useState({ title: "", description: "" })
+    const [isEditing, setEditing] = useState(false);
+    const [idEdit, setIdEdit] = useState("");
+
     const addNote = (description, title) => {
         setNotes([
             ...notes,
@@ -19,8 +23,29 @@ const NoteProvider = ({ children }) => { // vamos criar nossas funções que ser
         setNotes(notes.filter((note) => note.id !== id));
     };
 
+    const editNote = (id) => {
+        setNotes(notes.map((n) => {
+            if (n.id === id) {
+                return {...notes,id:id,date:generateAtualDate()}; 
+            } else {
+                return n;
+            }
+        }))
+    }
+
     return (
-        <NoteContext.Provider value={{ notes, addNote, deleteNote }}>
+        <NoteContext.Provider value={{
+            notes,
+            addNote,
+            deleteNote,
+            note,
+            setNote,
+            isEditing,
+            setEditing,
+            idEdit,
+            setIdEdit,
+            editNote
+        }}>
             {children} 
         </NoteContext.Provider>
     );
