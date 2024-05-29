@@ -3,8 +3,19 @@ import useApiAnimeData from '../../hooks/getAPIDATA';
 import AnimaCard from '../../components/AnimeCard/AnimaCard';
 import Popup from '../../components/Popup/Popup';
 import "./AnimePage.css"
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function AnimePage() {
+    const isLogged = useSelector((state) => state.user.isLogged);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isLogged == false) {
+            navigate("/login");
+        }
+    }, []);
+
     const [animeName, setAnimeName] = useState("one punch");
     const [animeDigitado, setAnimeDigitado] = useState("one punch")
     const { animeData, loading, error } = useApiAnimeData(animeName);

@@ -5,6 +5,7 @@ import Layout from "./pages/Layout/Layout";
 import { createBrowserRouter } from "react-router-dom";
 import Favorito from "./components/Favoritos/Favorito";
 import NotesPage from "./pages/NotesPage/NotesPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
                     return fetch(`https://api.jikan.moe/v4/anime?q=Kami to Yobareshi Arceus`)
                 }
             },
+            {
+                path: "/login",
+                element: <LoginPage/>
+            }
             
 
         ], errorElement: <ErrorPage></ErrorPage>
